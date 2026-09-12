@@ -1,7 +1,7 @@
 # flydigi-ctl
 
-Linux control software for the Flydigi Vader 5 Pro, reverse-engineered from
-the Windows "Flydigi Space Station" application.
+100% AI coded Linux control software for the Flydigi Vader 5 Pro, reverse-engineered from
+the Windows "Flydigi Space Station" application. I did not read one line of the code it wrote. It works on my machine.
 
 Flydigi ship no Linux software. This talks to the controller directly over
 `hidraw` using the same protocol the Windows app uses, so button mappings,
