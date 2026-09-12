@@ -18,6 +18,13 @@ This is an independent, unofficial project — see `NOTICE.md`. If you are
 picking the code up to extend it, start with `CLAUDE.md`, which covers the
 architecture and the protocol quirks that are easy to get wrong.
 
+## Screenshots
+
+| Profiles | Settings |
+|:--:|:--:|
+| [![Profile and button mapping](docs/screenshots/profiles.png)](docs/screenshots/profiles.png) | [![Controller settings](docs/screenshots/settings.png)](docs/screenshots/settings.png) |
+| Click a button on the controller to remap it. Amber marks a remapped button — here M5 and M6 are mapped to A and B. | Every hardware toggle, each with the vendor's own explanation behind a `?`. Unsupported features are labelled rather than silently inert. |
+
 ## Requirements
 
 Nothing to install — everything is already present on a normal Arch system:
