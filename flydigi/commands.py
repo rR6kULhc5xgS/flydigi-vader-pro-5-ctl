@@ -698,10 +698,16 @@ def write_profile(ctl: Controller, index: int, blob: bytes, *,
 
     Returns the dataVersion written, or None when persisting was skipped.
     """
-    from .mapping import OFF_DATA_VERSION
+    from .mapping import OFF_DATA_VERSION, MappingBlob
 
     if not 0 <= index < PROFILE_COUNT:
         raise ValueError(f"profile index must be 0..{PROFILE_COUNT - 1}")
+
+    # Refuse to write a layout this code does not understand -- the offsets
+    # it would be writing are only correct for known versions.
+    probe = MappingBlob(blob)
+    if not probe.proto_supported:
+        raise DeviceError(probe.layout_warning())
 
     buf = bytearray(blob)
     dv = None

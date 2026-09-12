@@ -146,6 +146,9 @@ def cmd_keys(args) -> int:
         if C.read_profile_versions(ctl).active != before:
             C.activate_profile(ctl, before)
         print(f"Profile {index + 1}: {blob.title!r}")
+        warning = blob.layout_warning()
+        if warning:
+            print(f"  WARNING: {warning}\n")
         text = blob.describe_keys(only_changed=not args.all)
         if text.count("\n") == 0:
             print("  (every button at its default)")

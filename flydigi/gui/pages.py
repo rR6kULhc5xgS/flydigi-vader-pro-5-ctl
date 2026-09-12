@@ -188,7 +188,13 @@ class ProfilesPage(Page):
         dv = (versions.data_versions[index]
               if index < len(versions.data_versions) else None)
         state = "factory default" if dv == C.UNWRITTEN else f"dataVersion {dv}"
-        self.summary.setText(f"{self.blob.title}  —  {state}")
+        warning = self.blob.layout_warning()
+        if warning:
+            self.summary.setText(f"{self.blob.title}  —  {state}\n\n⚠ {warning}")
+            self.summary.setStyleSheet("color: #d29922;")
+        else:
+            self.summary.setText(f"{self.blob.title}  —  {state}")
+            self.summary.setStyleSheet("")
         self._refresh_view()
         self._select_slot(self.slot if self.slot is not None else 4)
         self._set_dirty(False)

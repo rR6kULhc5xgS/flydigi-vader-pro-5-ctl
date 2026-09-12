@@ -171,6 +171,44 @@ Every one of these cost real time to find. They are not in the vendor docs.
     it is `0x11` byte 9 (`ControlByThirdPartyApp`), read back via `0x10`
     byte 9. Requires firmware ≥ 7.1.4.1.
 
+## When the firmware changes
+
+The mapping blob announces its own layout version in its first two bytes
+(`MappingBlob.proto_version`), and Flydigi has changed that layout before —
+3.1 added the per-stick curve bank at offset 790, 3.2 moved macros into a
+separate blob. `SUPPORTED_PROTO_VERSIONS` in `mapping.py` lists what this
+code has actually been validated against (currently 3.2 / 770).
+
+If a firmware update bumps it, reads are flagged with a warning in both the
+CLI and the GUI, and `write_profile` **refuses** rather than writing offsets
+that may no longer be correct. To support a new version: decompile the
+current `MappingConfigParser`, diff its offsets against
+`docs/protocol-rgb-mapping.md` §2.6, update the `OFF_*` constants and add
+the version to `SUPPORTED_PROTO_VERSIONS`.
+
+Blob *sizes* are taken from what the device announces, not hardcoded, so a
+longer blob is read in full rather than truncated. The macro blob already
+turned out to be 1660 bytes where the docs said 1620.
+
+## Adding a command from a newer Space Station build
+
+The infrastructure is the expensive part and it is already built. Per
+command the work is:
+
+1. Extract the new installer and decompile `Flydigi.ControllerSdk.dll`
+   (recipe in *Re-deriving the protocol*).
+2. Find the relevant `*CommandFactory` and read **only** the NewXInput
+   branch — the XInput/DInput ones are for other hardware and several have
+   no NewXInput variant at all.
+3. Note `CommandId()` and what `CreateCommand()` writes into the payload.
+4. Add a function in `commands.py` using `ctl.send(...)`; the framing,
+   checksum, retries and chunked transfer are already handled.
+5. Test it on profile 4, read it back, restore.
+
+`tools/recover-protos.py` regenerates `docs/proto/` from a new build's
+`*Reflection.cs`, which is the fastest way to spot new enums or config
+fields between versions.
+
 ## Verifying work
 
 There is a real controller involved, so lean on read-back:

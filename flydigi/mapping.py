@@ -10,6 +10,24 @@ from dataclasses import dataclass, field
 
 BLOB_SIZE = 840
 
+#: Mapping-blob layout versions this code has actually been validated
+#: against. The blob announces its own version in its first two bytes, and
+#: Flydigi has changed the layout between versions before -- 3.1 added the
+#: per-stick curve bank at offset 790, and 3.2 moved macros out into their
+#: own blob. If a firmware update bumps this past what is listed here, the
+#: offsets below may no longer describe reality, so say so loudly rather
+#: than silently misreading someone's configuration.
+SUPPORTED_PROTO_VERSIONS = frozenset({770})          # 3.2
+
+
+def describe_proto_version(value: int) -> str:
+    return f"{value >> 8}.{value & 0xFF} ({value})"
+
+
+class UnsupportedLayout(Exception):
+    """The blob announces a layout version this code does not know."""
+
+
 # -- offsets ---------------------------------------------------------------
 
 OFF_VERSION = 0        # 2  [minor, major]
@@ -130,10 +148,15 @@ class KeySlot:
 class MappingBlob:
     """Read/modify/write wrapper over the raw 840-byte blob."""
 
-    def __init__(self, data: bytes):
+    def __init__(self, data: bytes, *, strict: bool = False):
         if len(data) < BLOB_SIZE:
             data = bytes(data) + b"\xff" * (BLOB_SIZE - len(data))
-        self.data = bytearray(data[:BLOB_SIZE])
+        # Keep whatever the device actually served. A future firmware may
+        # send a longer blob; truncating here would silently drop its tail
+        # and then write it back short.
+        self.data = bytearray(data)
+        if strict and not self.proto_supported:
+            raise UnsupportedLayout(self.layout_warning())
 
     # -- header ---------------------------------------------------------
 
@@ -150,6 +173,24 @@ class MappingBlob:
     def data_version(self, value: int) -> None:
         self.data[OFF_DATA_VERSION:OFF_DATA_VERSION + 2] = \
             int(value).to_bytes(2, "little")
+
+    @property
+    def proto_supported(self) -> bool:
+        return self.proto_version in SUPPORTED_PROTO_VERSIONS
+
+    def layout_warning(self) -> str | None:
+        """Explain why this blob may not be safe to interpret."""
+        if self.proto_supported:
+            return None
+        known = ", ".join(sorted(describe_proto_version(v)
+                                 for v in SUPPORTED_PROTO_VERSIONS))
+        return (f"This profile reports mapping layout "
+                f"{describe_proto_version(self.proto_version)}, but this "
+                f"software has only been validated against {known}. The "
+                f"field offsets may have moved, so what is shown could be "
+                f"wrong and writing it back could corrupt the profile. "
+                f"Re-check the layout against a current Space Station build "
+                f"before trusting this (see CLAUDE.md).")
 
     @property
     def title(self) -> str:
