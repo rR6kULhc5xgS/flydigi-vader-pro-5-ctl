@@ -1,0 +1,28 @@
+// file: Common.proto
+package Flydigi.SharedResources.data.protobuf;
+
+message LocalConfigs {
+  string deviceCode = 1;
+  repeated DeviceConfig deviceConfig = 2;
+}
+
+message DeviceConfig {
+  int32 id = 1;
+  string title = 2;
+  int32 version = 3;
+  bool active = 4;
+  string fileName = 5;
+  string hashCode = 6;
+}
+
+message Point {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message Color {
+  int32 red = 1;
+  int32 green = 2;
+  int32 blue = 3;
+}
+

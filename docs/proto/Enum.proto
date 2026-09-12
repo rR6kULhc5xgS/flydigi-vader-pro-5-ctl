@@ -1,0 +1,112 @@
+// file: Enum.proto
+package Flydigi.SharedResources.data.protobuf;
+
+enum ChipType {
+  Unknown = 0;
+  Wch = 1;
+  Telink = 2;
+  Krly = 3;
+  NearLink = 4;
+  Megahunt = 5;
+  Puya = 6;
+  ESP = 7;
+  FREQ = 8;
+  JIELI = 9;
+}
+
+enum ChipModule {
+  CHIP_MAIN = 0;
+  CHIP_RF = 1;
+  CHIP_SI = 2;
+  CHIP_SCREEN = 4;
+  CHIP_TRIGGER = 5;
+  CHIP_DONGLE = 6;
+  CHIP_ADC = 7;
+  CHIP_LED = 8;
+}
+
+enum Category {
+  Category_Unknown = 0;
+  Category_Controller = 1;
+  Category_Cooler = 2;
+  Category_Keyboard = 3;
+  Category_Mouse = 4;
+  Category_Headset = 5;
+  Category_Charger = 6;
+}
+
+enum ConnectType {
+  ConnectType_Unknown = 0;
+  ConnectType_Wired = 1;
+  ConnectType_Dongle = 2;
+  ConnectType_Bluetooth = 3;
+}
+
+enum Direction {
+  Direction_Center = 0;
+  Direction_Top = 1;
+  Direction_TopLeft = 2;
+  Direction_Left = 3;
+  Direction_LeftBottom = 4;
+  Direction_Bottom = 5;
+  Direction_BottomRight = 6;
+  Direction_Right = 7;
+  Direction_RightTop = 8;
+}
+
+enum LedType {
+  LED_TYPE_Unknown = 0;
+  LED_TYPE_FLOW = 1;
+  LED_TYPE_BREATH = 2;
+  LED_TYPE_GRADIENT = 3;
+  LED_TYPE_FEEDBACK = 4;
+  LED_TYPE_ON = 5;
+  LED_TYPE_Close = 6;
+  LED_TYPE_Default = 7;
+}
+
+enum Side {
+  Side_Left = 0;
+  Side_Right = 1;
+}
+
+enum ConfigType {
+  ConfigType_All = 0;
+  ConfigType_Simple = 1;
+  ConfigType_Led = 2;
+  ConfigType_Button = 3;
+  ConfigType_Macro = 4;
+  ConfigType_Joystick = 5;
+  ConfigType_Motion = 6;
+  ConfigType_Trigger = 7;
+  ConfigType_Vibration = 8;
+}
+
+enum JoystickSensitivity {
+  JoystickSensitivity_None = 0;
+  JoystickSensitivity_Highest = 14;
+  JoystickSensitivity_High = 15;
+  JoystickSensitivity_MiddleHigh = 16;
+  JoystickSensitivity_Middle = 17;
+  JoystickSensitivity_LowMiddle = 18;
+  JoystickSensitivity_Low = 19;
+  JoystickSensitivity_Lowest = 20;
+}
+
+enum JoystickPrecision {
+  JoystickPrecision_None = 0;
+  JoystickPrecision_8Bit = 1;
+  JoystickPrecision_10Bit = 2;
+  JoystickPrecision_12Bit = 3;
+  JoystickPrecision_9Bit = 4;
+  JoystickPrecision_11Bit = 5;
+  JoystickPrecision_14Bit = 6;
+  JoystickPrecision_16Bit = 7;
+}
+
+enum ReceiveRawDataScene {
+  ReceiveRawDataScene_Normal = 0;
+  ReceiveRawDataScene_Macro = 1;
+  ReceiveRawDataScene_Test = 2;
+}
+

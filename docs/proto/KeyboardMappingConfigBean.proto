@@ -1,0 +1,103 @@
+// file: KeyboardMappingConfigBean.proto
+package Flydigi.SharedResources.data.protobuf;
+import "KeyboardEnum.proto";
+
+message KeyboardMappingConfigBeans {
+  repeated KeyboardMappingConfigBean keyboardMappingConfigBean = 1;
+}
+
+message KeyboardMappingConfigBean {
+  int32 cfgId = 1;
+  int32 protoVersion = 2;
+  int32 dataVersion = 3;
+  string title = 4;
+  repeated KeyboardKeyConfig keyConfigs = 5;
+}
+
+message AdvanceConfig {
+  optional SocdConfig socd = 1;
+  optional RsConfig rs = 2;
+  optional MtConfig mt = 3;
+  optional DksConfig dks = 4;
+  optional KeyboardMacroConfig macro = 5;
+  optional TglConfig tgl = 6;
+}
+
+message KeyboardKeyConfig {
+  KeyID keyId = 1;
+  bool isDefault = 2;
+  RapidTriggerConfig rtConfig = 3;
+  optional AdvanceConfig advanceConfig = 4;
+}
+
+message RapidTriggerConfig {
+  int32 index = 1;
+  bool isRapidTriggerOn = 2;
+  bool deadzone_switch = 3;
+  int32 start_deadzone = 4;
+  int32 end_deadzone = 5;
+  int32 trigger_range = 6;
+  int32 trigger_sen = 7;
+  int32 release_sen = 8;
+  int32 DDT_range = 9;
+  int32 deep_trigger_type = 10;
+  int32 deep_trigger_sen = 11;
+  int32 deep_release_sen = 12;
+}
+
+message SocdConfig {
+  int32 index = 1;
+  int32 layer1 = 2;
+  int32 key1 = 3;
+  int32 layer2 = 4;
+  int32 key2 = 5;
+  int32 type = 6;
+  bool endTriggerSwitch = 7;
+}
+
+message RsConfig {
+  int32 index = 1;
+  int32 layer1 = 2;
+  int32 key1 = 3;
+  int32 layer2 = 4;
+  int32 key2 = 5;
+  bool endTriggerSwitch = 6;
+}
+
+message MtConfig {
+  int32 index = 1;
+  int32 tapKey = 2;
+  int32 holdKey = 3;
+  int32 holdTimeMs = 4;
+}
+
+message TglConfig {
+  int32 index = 1;
+  int32 tapKey = 2;
+  int32 holdKey = 3;
+  int32 holdTimeMs = 4;
+}
+
+message DksConfig {
+  int32 index = 1;
+  int32 level1Key = 2;
+  int32 level2Key = 3;
+  int32 level3Key = 4;
+  int32 level4Key = 5;
+  int32 level1Threshold = 6;
+  int32 level2Threshold = 7;
+  repeated int32 DKS_rules = 8;
+}
+
+message KeyboardMacroConfig {
+  int32 index = 1;
+  int32 macroActionCount = 2;
+  repeated KeyboardMacroAction macroActions = 3;
+}
+
+message KeyboardMacroAction {
+  int32 keyCode = 1;
+  int32 state = 2;
+  int32 delayMs = 3;
+}
+

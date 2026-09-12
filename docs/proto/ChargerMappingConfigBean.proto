@@ -1,0 +1,36 @@
+// file: ChargerMappingConfigBean.proto
+package Flydigi.SharedResources.data.protobuf;
+import "ChargerEnum.proto";
+import "Common.proto";
+
+message FramedLedColor {
+  int32 brightness = 1;
+  repeated Color colors = 2;
+}
+
+message ChargerMappingConfigBeans {
+  repeated ChargerMappingConfigBean configItems = 1;
+}
+
+message ChargerMappingConfigBean {
+  int32 cfgId = 1;
+  string title = 2;
+  ChargerLedConfig currentLedConfig = 7;
+  repeated ChargerLedConfig ledConfigOptions = 8;
+  ChargerLedTypeAdvanced advancedLedConfig = 9;
+}
+
+message ChargerLedConfig {
+  ChargerLedType mode = 1;
+  int32 period = 2;
+  int32 brightness = 3;
+  repeated Color color = 4;
+  int32 useColorCount = 5;
+  ChargerLedDirection direction = 6;
+  repeated FramedLedColor frames = 7;
+}
+
+message ChargerLedTypeAdvanced {
+  ChargerAdvancedLedType mode = 1;
+}
+

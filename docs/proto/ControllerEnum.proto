@@ -1,0 +1,141 @@
+// file: ControllerEnum.proto
+package Flydigi.SharedResources.data.protobuf;
+
+enum ControllerKey {
+  ControllerKey_Up = 0;
+  ControllerKey_Right = 1;
+  ControllerKey_Down = 2;
+  ControllerKey_Left = 3;
+  ControllerKey_A = 4;
+  ControllerKey_B = 5;
+  ControllerKey_Select = 6;
+  ControllerKey_X = 7;
+  ControllerKey_Y = 8;
+  ControllerKey_Start = 9;
+  ControllerKey_Lb = 10;
+  ControllerKey_Rb = 11;
+  ControllerKey_Lt = 12;
+  ControllerKey_Rt = 13;
+  ControllerKey_Thl = 14;
+  ControllerKey_Thr = 15;
+  ControllerKey_C = 16;
+  ControllerKey_Z = 17;
+  ControllerKey_M1 = 18;
+  ControllerKey_M2 = 19;
+  ControllerKey_M3 = 20;
+  ControllerKey_M4 = 21;
+  ControllerKey_M5 = 22;
+  ControllerKey_M6 = 23;
+  ControllerKey_Menu = 24;
+  ControllerKey_Turbo = 25;
+  ControllerKey_Home = 27;
+  ControllerKey_Back = 28;
+  ControllerKey_JsLeft = 240;
+  ControllerKey_JsRight = 241;
+  ControllerKey_JsWheel = 242;
+  ControllerKey_Macro = 32;
+  ControllerKey_KeyboardMouse = 254;
+  ControllerKey_None = 255;
+  ControllerKey_Joystick_Center = 160;
+  ControllerKey_Joystick_Up = 161;
+  ControllerKey_Joystick_RightUp = 162;
+  ControllerKey_Joystick_Right = 163;
+  ControllerKey_Joystick_RightDown = 164;
+  ControllerKey_Joystick_Down = 165;
+  ControllerKey_Joystick_LeftDown = 166;
+  ControllerKey_Joystick_Left = 167;
+  ControllerKey_Joystick_LeftUp = 168;
+}
+
+enum JoystickMapType {
+  JoystickMapType_Joystick = 0;
+  JoystickMapType_Keyboard = 1;
+  JoystickMapType_Mouse = 2;
+  JoystickMapType_DPad = 3;
+}
+
+enum JoystickMapKeyboardDirection {
+  JoystickMapKeyboardDirection_Four = 0;
+  JoystickMapKeyboardDirection_Eight = 1;
+}
+
+enum JoystickCircularityType {
+  JoystickCircularityType_Rectangle = 0;
+  JoystickCircularityType_Circular = 1;
+}
+
+enum JoystickSensitivityType {
+  JoystickSensitivityType_Default = 0;
+  JoystickSensitivityType_Quick = 1;
+  JoystickSensitivityType_Slow = 2;
+  JoystickSensitivityType_Custom = 3;
+}
+
+enum KeyMapType {
+  KeyMapType_Key = 0;
+  KeyMapType_Continuous = 1;
+  KeyMapType_Macro = 2;
+  KeyMapType_MultiFunction = 3;
+  KeyMapType_Keyboard = 4;
+}
+
+enum KeyMapTypeContinuousEnableType {
+  KeyMapTypeContinuousEnableType_Close = 0;
+  KeyMapTypeContinuousEnableType_Press = 1;
+  KeyMapTypeContinuousEnableType_Click = 2;
+}
+
+enum MotionUseMode {
+  MotionMode_FPS = 0;
+  MotionMode_RACER = 1;
+}
+
+enum MotionMapType {
+  MotionMapType_Off = 0;
+  MotionMapType_LeftJoystick = 1;
+  MotionMapType_RightJoystick = 2;
+  MotionMapType_Mouse = 3;
+}
+
+enum MotionEnableType {
+  MotionEnableType_Click = 0;
+  MotionEnableType_Press = 1;
+}
+
+enum TriggerType {
+  TriggerType_Normal = 0;
+  TriggerType_AdapterTrigger = 1;
+  TriggerType_VibrationTrigger = 2;
+}
+
+enum AdapterTriggerType {
+  AdapterTriggerType_Normal = 0;
+  AdapterTriggerType_Race = 1;
+  AdapterTriggerType_Sniper = 2;
+  AdapterTriggerType_Recoil = 3;
+  AdapterTriggerType_Lock = 4;
+  AdapterTriggerType_Vibration = 5;
+}
+
+enum MacroActionEvent {
+  MacroActionEvent_Release = 0;
+  MacroActionEvent_Press = 1;
+  MacroActionEvent_LeftJoystick = 2;
+  MacroActionEvent_RightJoystick = 3;
+  MacroActionEvent_Hold = 5;
+}
+
+enum MacroEnableType {
+  MacroEnableType_None = 0;
+  MacroEnableType_Once = 1;
+  MacroEnableType_Press = 2;
+  MacroEnableType_Click = 3;
+}
+
+enum VibrationType {
+  VibrationType_Both = 0;
+  VibrationType_Grip = 1;
+  VibrationType_Trigger = 2;
+  VibrationType_Grip_Trigger = 3;
+}
+

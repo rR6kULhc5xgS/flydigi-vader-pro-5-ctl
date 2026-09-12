@@ -1,0 +1,142 @@
+// file: Device.proto
+package Flydigi.SharedResources.data.protobuf;
+import "Enum.proto";
+import "ControllerEnum.proto";
+import "KeyboardEnum.proto";
+import "MouseEnum.proto";
+import "CoolerEnum.proto";
+
+message HidDevice {
+  Category category = 1;
+  int32 vendorId = 2;
+  int32 productId = 3;
+  string deviceCode = 4;
+  int32 deviceType = 5;
+  string devicePath = 6;
+  ConnectType connectType = 7;
+  optional string firmwareVersion = 8;
+}
+
+message DeviceInfo {
+  string productName = 1;
+  Category category = 2;
+  ConnectType connectType = 3;
+  string deviceCode = 4;
+  int32 deviceType = 5;
+  string deviceMac = 6;
+  string uid = 7;
+  bool isConnected = 8;
+  int32 battery = 9;
+  string firmwareVersion = 10;
+  int32 vendorId = 11;
+  int32 productId = 12;
+  repeated FirmwareInfo firmwares = 13;
+}
+
+message ControllerInfo {
+  DeviceInfo parent = 1;
+  ControllerFirmwareVersion firmwares = 2;
+  bool support_adapt_trigger = 3;
+  bool support_screen = 4;
+  bool support_led = 5;
+  bool support_ns = 6;
+  bool support_trigger_vibration = 7;
+  repeated ControllerKey contain_keys = 8;
+}
+
+message FirmwareInfo {
+  ChipModule chipModule = 1;
+  ChipType chipType = 2;
+  optional string version = 3;
+}
+
+message ControllerFirmwareVersion {
+  optional string trigger = 1;
+  optional string adc = 2;
+  optional string screen = 3;
+  optional string dongle = 4;
+  optional string si = 5;
+  optional string rf = 6;
+}
+
+message KeyState {
+  ControllerKey key = 1;
+  bool isPressed = 2;
+  int32 pressure = 3;
+}
+
+message JoystickState {
+  ControllerKey key = 1;
+  int32 axisX = 2;
+  int32 axisY = 3;
+  Direction direction = 4;
+  bool isPressed = 5;
+}
+
+message KeyboardInfo {
+  DeviceInfo parent = 1;
+  int32 MaxKeyboardKeyCount = 2;
+  int32 MaxSocdConfigCount = 3;
+  int32 MaxRsConfigCount = 4;
+  int32 MaxMtConfigCount = 5;
+  int32 MaxDksConfigCount = 6;
+  int32 MaxMacroConfigCount = 7;
+  repeated KeyID contain_keys = 8;
+  int32 brightness = 9;
+}
+
+message KeyboardKeyStatus {
+  KeyboardKey key = 1;
+  bool isPressed = 2;
+  int32 pressure = 3;
+}
+
+message CoolerInfo {
+  DeviceInfo parent = 1;
+  bool is_running = 2;
+  bool is_init = 3;
+  RunModeProto run_mode = 4;
+  FanModeProto fan_mode = 5;
+  uint32 fan_current_speed = 6;
+  uint32 fan_target_speed = 7;
+  uint32 cpu_temperature = 8;
+  uint32 gpu_temperature = 9;
+  RgbEffectTypeProto rgb_effect = 10;
+  bool is_test_mode = 11;
+  GearPositionProto current_gear = 12;
+  LedModeProto led_mode = 13;
+  OverclockTypeProto overclock_type = 14;
+  CoolerStatusProto status = 15;
+  uint32 recommended_speed = 16;
+  bool is_power_auto_start = 17;
+  bool is_gear_light = 18;
+  IntelligentStartStopModeProto start_stop_mode = 19;
+  uint32 gear1_speed = 20;
+  uint32 gear2_speed = 21;
+  uint32 gear3_speed = 22;
+  uint32 gear4_speed = 23;
+  uint32 min_speed = 24;
+  uint32 max_speed = 25;
+  VbusStatusProto vbus_mode = 26;
+  FanAccLevelProto acc_level = 27;
+}
+
+message ChargerInfo {
+  DeviceInfo parent = 1;
+  bool sleepWhenCharging = 2;
+  bool ledSync = 3;
+  bool closeWithSystem = 4;
+  bool showAnimationWhenCharging = 5;
+  bool isControllerConnected = 6;
+  int32 controllerBattery = 7;
+}
+
+message MouseInfo {
+  DeviceInfo parent = 1;
+  repeated MouseKey contain_keys = 8;
+}
+
+message HeadsetInfo {
+  DeviceInfo parent = 1;
+}
+

@@ -1,0 +1,229 @@
+// file: ControllerMappingConfigBean.proto
+package Flydigi.SharedResources.data.protobuf;
+import "Common.proto";
+import "ControllerEnum.proto";
+import "KeyboardEnum.proto";
+import "Enum.proto";
+
+message ControllerMappingConfigBeans {
+  repeated ControllerMappingConfigBean controllerMappingConfigBean = 1;
+}
+
+message ControllerMappingConfigBean {
+  int32 cfgId = 1;
+  int32 protoVersion = 2;
+  int32 packageCount = 3;
+  int32 dataVersion = 4;
+  string title = 5;
+  JoystickConfigBeans joystickConfigBean = 6;
+  KeyConfigBeans keyConfigBeans = 7;
+  VibrationConfigBean vibrationConfigBean = 8;
+  TriggerConfigBeans triggerConfigBean = 9;
+  MotionConfigBean motionConfigBean = 10;
+  LedConfigBean ledConfigBean = 11;
+  MacroConfigBean macroConfigBean = 12;
+  repeated int32 oldLedConfig = 13;
+  repeated int32 lunpan = 14;
+}
+
+message JoystickConfigBeans {
+  JoystickConfigBean leftJoystickParam = 1;
+  JoystickConfigBean rightJoystickParam = 2;
+}
+
+message JoystickConfigBean {
+  JoystickMapType mapType = 1;
+  JoystickMapTypeJoystick mapTypeJoystick = 2;
+  optional JoystickMapTypeKeyboard mapTypeKeyboard = 3;
+  optional JoystickMapTypeMouse mapTypeMouse = 4;
+  int32 End = 5;
+}
+
+message JoystickMapTypeJoystick {
+  JoystickCircularityType circularityType = 1;
+  int32 center = 2;
+  int32 edge = 3;
+  JoystickSensitivityConfig sensitivityConfig = 4;
+}
+
+message JoystickSensitivityConfig {
+  JoystickSensitivityType type = 1;
+  Point point1 = 2;
+  Point point2 = 3;
+  repeated int32 points = 4;
+}
+
+message JoystickMapTypeKeyboard {
+  JoystickMapKeyboardDirection direction = 1;
+  int32 deadZone = 2;
+  repeated JoystickMapTypeKeyboardConfig config = 3;
+}
+
+message JoystickMapTypeKeyboardConfig {
+  Direction direction = 1;
+  KeyboardKey mapKeyId = 2;
+}
+
+message JoystickMapTypeMouse {
+  int32 deadZone = 1;
+  int32 sensitivityX = 2;
+  int32 sensitivityY = 3;
+}
+
+message KeyConfigBeans {
+  repeated KeyConfigBean keyConfigBean = 1;
+}
+
+message KeyConfigBean {
+  ControllerKey keyId = 1;
+  KeyMapType mapType = 2;
+  KeyMapTypeKey mapTypeKey = 3;
+  KeyMapTypeContinuous mapTypeContinuous = 4;
+  KeyMapTypeMacro mapTypeMacro = 5;
+  KeyMapTypeMultiFunction mapTypeMultiFunction = 6;
+}
+
+message KeyMapTypeKey {
+  optional ControllerKey mapControllerKeyId = 1;
+  optional KeyboardKey mapKeyboardKeyId = 2;
+}
+
+message KeyMapTypeContinuous {
+  ControllerKey mapControllerKeyId = 1;
+  KeyMapTypeContinuousEnableType enableType = 2;
+  int32 frequency = 3;
+}
+
+message KeyMapTypeMacro {
+}
+
+message KeyMapTypeMultiFunction {
+  int32 mapKeyId = 1;
+}
+
+message LedConfigBean {
+  int32 version = 1;
+  bool clickFeedback = 2;
+  int32 loopStart = 3;
+  int32 loopEnd = 4;
+  int32 loopTime = 5;
+  int32 brightness = 6;
+  int32 RgbNum = 7;
+  int32 ledMode = 8;
+  repeated LedGroup ledGroup = 9;
+  bool gripSync = 10;
+}
+
+message LedGroup {
+  repeated Color ledUnit = 1;
+}
+
+message TriggerConfigBeans {
+  TriggerConfigBean leftTriggerConfigBean = 1;
+  TriggerConfigBean rightTriggerConfigBean = 2;
+}
+
+message TriggerConfigBean {
+  int32 Zero = 1;
+  int32 End = 2;
+  TriggerVibrationConfigBean triggerVibrationConfigBean = 3;
+  TriggerAdapterConfigBean triggerAdapterConfigBean = 4;
+  int32 type = 5;
+  Point point1 = 6;
+  Point point2 = 7;
+}
+
+message TriggerVibrationConfigBean {
+  bool enable = 1;
+  TriggerVibrationTypedConfigBean linearConfigBean = 2;
+  TriggerVibrationTypedConfigBean microConfigBean = 3;
+}
+
+message TriggerVibrationTypedConfigBean {
+  int32 type = 1;
+  int32 minLevel = 2;
+  int32 maxLevel = 3;
+  int32 filter = 4;
+  int32 minStart = 5;
+  int32 scale = 6;
+  int32 minTime = 7;
+}
+
+message TriggerAdapterConfigBean {
+  int32 type = 1;
+  TriggerBindVibrationConfigBean bind = 2;
+  int32 mixed_border = 3;
+  repeated int32 param = 4;
+}
+
+message TriggerBindVibrationConfigBean {
+  int32 type = 1;
+  int32 filter = 2;
+  int32 scale = 3;
+  repeated int32 param = 4;
+}
+
+message VibrationConfigBean {
+  bool enable = 1;
+  VibrationItemConfigBean vibrationLeftConfigBean = 2;
+  VibrationItemConfigBean vibrationRightConfigBean = 3;
+}
+
+message VibrationItemConfigBean {
+  bool enable = 1;
+  int32 min = 2;
+  int32 max = 3;
+  int32 scale = 4;
+}
+
+message MotionConfigBean {
+  MotionUseMode useMode = 1;
+  MotionMapType mappingType = 2;
+  MotionMapTypeJoystick mappingTypeJoystick = 3;
+  MotionMapTypeMouse mappingTypeMouse = 4;
+}
+
+message MotionMapTypeMouse {
+  MotionEnableType enableType = 1;
+  repeated ControllerKey enableKey = 2;
+  int32 sensitivityX = 3;
+  int32 sensitivityY = 4;
+}
+
+message MotionMapTypeJoystick {
+  MotionEnableType enableType = 1;
+  repeated ControllerKey enableKey = 2;
+  int32 sensitivity = 3;
+  int32 deadZone = 4;
+  MotionSmoothnessConfig smoothness = 5;
+}
+
+message MotionSmoothnessConfig {
+  int32 zero = 1;
+  Point point1 = 2;
+  Point point2 = 3;
+  int32 end = 4;
+}
+
+message MacroConfigBean {
+  repeated int32 Offsets = 1;
+  repeated int32 interval = 2;
+  repeated MacroItem Macros = 3;
+  optional int32 version = 4;
+}
+
+message MacroItem {
+  ControllerKey keyId = 1;
+  int32 count = 2;
+  MacroEnableType type = 3;
+  repeated MacroAction actions = 4;
+  int32 interval = 5;
+  optional string cfgName = 6;
+}
+
+message MacroAction {
+  ControllerKey keyId = 1;
+  int32 duration = 2;
+  MacroActionEvent event = 3;
+}
+

@@ -1,0 +1,39 @@
+// file: ChargerEnum.proto
+package Flydigi.SharedResources.data.protobuf;
+
+enum ChargerDeviceType {
+  ChargerDeviceType_CD2 = 0;
+  ChargerDeviceType_CD2_EVA = 1;
+}
+
+enum ChargerAdvancedLedType {
+  ChargerLedTypeAdvanced_Predefined = 0;
+  ChargerLedTypeAdvanced_Clock = 1;
+  ChargerLedTypeAdvanced_Temperature = 2;
+}
+
+enum ChargerLedType {
+  ChargerLedType_Close = 0;
+  ChargerLedType_Solid = 1;
+  ChargerLedType_Default = 2;
+  ChargerLedType_Custom = 3;
+  ChargerLedType_Diagonal_Flow = 4;
+  ChargerLedType_Breath = 5;
+  ChargerLedType_Gradient = 6;
+  ChargerLedType_Wave_Gradient = 7;
+  ChargerLedType_Rainbow = 8;
+  ChargerLedType_Pulse = 9;
+}
+
+enum ChargerLedDirection {
+  ChargerLedDirection_NONE = 0;
+  ChargerLedDirection_ToRight = 1;
+  ChargerLedDirection_ToLeft = 2;
+  ChargerLedDirection_ToDown = 3;
+  ChargerLedDirection_ToUp = 4;
+  ChargerLedDirection_ToRightDown = 5;
+  ChargerLedDirection_ToRightUp = 6;
+  ChargerLedDirection_ToLeftDown = 7;
+  ChargerLedDirection_ToLeftUp = 8;
+}
+

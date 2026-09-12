@@ -1,0 +1,19 @@
+# Your controller's saved configuration — contains its UID and MAC.
+backups/
+
+# Flydigi's product photo, extracted from their app. Not redistributable.
+# Run tools/extract-assets.py against a local install to recreate it;
+# without it the GUI falls back to a drawn schematic.
+flydigi/gui/assets/*.png
+!flydigi/gui/assets/README.md
+
+# Vendor material, if it ever ends up inside this directory.
+app/
+decompiled/
+extracted/
+*.exe
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/

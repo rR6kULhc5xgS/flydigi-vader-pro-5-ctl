@@ -1,0 +1,149 @@
+// file: CoolerEnum.proto
+package Flydigi.SharedResources.data.protobuf;
+
+enum CoolerSel {
+  COOLER_TYPE_UNKNOWN = 0;
+  COOLER_TYPE_NOTEBOOK_COOLING_PAD = 1;
+  COOLER_TYPE_CPU_COOLER = 2;
+}
+
+enum CoolerType {
+  None = 0;
+  BS1 = 1;
+  BS2 = 2;
+  BS2Pro = 3;
+  BS2ProIP_EVA = 4;
+}
+
+enum RunModeProto {
+  RUN_MODE_1 = 0;
+  RUN_MODE_2 = 1;
+  RUN_MODE_3 = 2;
+  RUN_MODE_4 = 3;
+}
+
+enum GearPositionProto {
+  GEAR_1 = 0;
+  GEAR_2 = 1;
+  GEAR_3 = 2;
+  GEAR_4 = 3;
+}
+
+enum FanModeProto {
+  FAN_MODE_SMART = 0;
+  FAN_MODE_GEAR_1 = 1;
+  FAN_MODE_GEAR_2 = 2;
+  FAN_MODE_GEAR_3 = 3;
+  FAN_MODE_GEAR_4 = 4;
+}
+
+enum FanAccLevelProto {
+  FAN_ACC_LEVEL_1 = 0;
+  FAN_ACC_LEVEL_2 = 1;
+  FAN_ACC_LEVEL_3 = 2;
+  FAN_ACC_LEVEL_4 = 3;
+}
+
+enum SmartModeProto {
+  Exit = 0;
+  Smart_GEAR_1 = 1;
+  Smart_GEAR_2 = 2;
+  Smart_GEAR_3 = 3;
+  Smart_GEAR_4 = 4;
+}
+
+enum LedModeProto {
+  LED_MODE_OFF = 0;
+  LED_MODE_ON = 1;
+  LED_MODE_SMART = 2;
+}
+
+enum RgbEffectTypeProto {
+  RGB_EFFECT_OFF = 0;
+  RGB_EFFECT_STREAMING = 1;
+  RGB_EFFECT_ROTATION = 2;
+  RGB_EFFECT_BREATHING = 3;
+  RGB_EFFECT_STATIC_SINGLE = 4;
+  RGB_EFFECT_STATIC_MULTI = 5;
+  RGB_EFFECT_RAINBOW = 6;
+  RGB_EFFECT_WAVE = 7;
+  RGB_EFFECT_FLASH = 8;
+  RGB_EFFECT_SMART = 9;
+  RGB_EFFECT_CUSTOM = 99;
+}
+
+enum RgbBrightnessProto {
+  RGB_BRIGHTNESS_OFF = 0;
+  RGB_BRIGHTNESS_LOW = 1;
+  RGB_BRIGHTNESS_MEDIUM = 2;
+  RGB_BRIGHTNESS_HIGH = 3;
+  RGB_BRIGHTNESS_MAXIMUM = 4;
+}
+
+enum RgbSpeedProto {
+  RGB_SPEED_VERY_SLOW = 0;
+  RGB_SPEED_SLOW = 1;
+  RGB_SPEED_MEDIUM = 2;
+  RGB_SPEED_FAST = 3;
+  RGB_SPEED_VERY_FAST = 4;
+}
+
+enum OverclockTypeProto {
+  OVERCLOCK_NONE = 0;
+  OVERCLOCK_LEVEL1 = 1;
+  OVERCLOCK_LEVEL2 = 2;
+  OVERCLOCK_LEVEL3 = 3;
+}
+
+enum TestModeTypeProto {
+  TEST_MODE_NORMAL = 0;
+  TEST_MODE_FAN = 1;
+  TEST_MODE_RGB = 2;
+  TEST_MODE_FULL = 3;
+}
+
+enum CoolerStatusProto {
+  COOLER_STATUS_DISCONNECTED = 0;
+  COOLER_STATUS_CONNECTED = 1;
+  COOLER_STATUS_RUNNING = 2;
+  COOLER_STATUS_STOPPED = 3;
+  COOLER_STATUS_ERROR = 4;
+}
+
+enum VbusStatusProto {
+  VBUS_STATUS_UNDEFINED = 0;
+  VBUS_STATUS_NO_FAST_CHARGE = 1;
+  VBUS_STATUS_QC_FAST_CHARGE = 2;
+  VBUS_STATUS_PD_FAST_CHARGE = 3;
+}
+
+enum IntelligentStartStopModeProto {
+  INTELLIGENT_START_STOP_DISABLED = 0;
+  INTELLIGENT_START_STOP_IMMEDIATE = 1;
+  INTELLIGENT_START_STOP_DELAYED = 2;
+}
+
+enum PowerModeProto {
+  POWER_MODE_20W = 0;
+  POWER_MODE_45W = 1;
+  POWER_MODE_65W = 2;
+  POWER_MODE_100W = 3;
+}
+
+enum FanCoolingModeProto {
+  FAN_COOLING_MODE_FIXED_SPEED = 0;
+  FAN_COOLING_MODE_INTELLIGENT = 1;
+}
+
+enum IntelligentCoolingPresetProto {
+  INTELLIGENT_COOLING_PRESET_QUIET = 0;
+  INTELLIGENT_COOLING_PRESET_PERFORMANCE = 1;
+  INTELLIGENT_COOLING_PRESET_CUSTOM = 2;
+}
+
+enum CoolingModeType {
+  COOLING_MODE_QUIET = 0;
+  COOLING_MODE_PERFORMANCE = 1;
+  COOLING_MODE_CUSTOM = 2;
+}
+

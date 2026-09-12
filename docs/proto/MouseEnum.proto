@@ -1,0 +1,12 @@
+// file: MouseEnum.proto
+package Flydigi.SharedResources.data.protobuf;
+
+enum MouseKey {
+  MouseKey_None = 0;
+  MouseKey_Left = 1048576;
+  MouseKey_Middle = 4194304;
+  MouseKey_Right = 2097152;
+  MouseKey_XButton1 = 8388608;
+  MouseKey_XButton2 = 16777216;
+}
+

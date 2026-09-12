@@ -1,0 +1,969 @@
+// file: IpcCommand.proto
+package Flydigi.SharedResources.data.protobuf;
+import "Enum.proto";
+import "ControllerEnum.proto";
+import "Device.proto";
+import "ControllerMappingConfig.proto";
+import "ControllerMappingConfigBean.proto";
+import "Common.proto";
+import "ChargerMappingConfigBean.proto";
+import "KeyboardMappingConfigBean.proto";
+import "CoolerEnum.proto";
+import "CoolerMappingConfigBean.proto";
+
+enum IpcCommandEnum {
+  IpcCommandEnum_Unknown = 0;
+  IpcCommandEnum_Init = 1;
+  IpcCommandEnum_UploadLog = 2;
+  IpcCommandEnum_OperatorChanged = 10;
+  IpcCommandEnum_EnableXInput = 11;
+  IpcCommandEnum_EnableRawData = 12;
+  IpcCommandEnum_RollingRateReport = 13;
+  IpcCommandEnum_SwitchUsb = 15;
+  IpcCommandEnum_EnableControlByThirdPartyApp = 16;
+  IpcCommandEnum_AcquireController = 17;
+  IpcCommandEnum_CheckThirdPartyAcquiredController = 18;
+  IpcCommandEnum_GetConnectedDevices = 4097;
+  IpcCommandEnum_DeviceConnectionChanged = 4098;
+  IpcCommandEnum_GetDeviceDetailInfo = 4099;
+  IpcCommandEnum_GetCurrentAppliedConfigId = 4100;
+  IpcCommandEnum_GetConfig = 4112;
+  IpcCommandEnum_UpdateConfig = 4113;
+  IpcCommandEnum_SaveConfig = 4114;
+  IpcCommandEnum_ApplyOnboardConfig = 4115;
+  IpcCommandEnum_SaveOnboardConfigToLocal = 4116;
+  IpcCommandEnum_ApplyLocalConfig = 4117;
+  IpcCommandEnum_UpdateLocalConfigSort = 4118;
+  IpcCommandEnum_UpdateLocalConfigName = 4119;
+  IpcCommandEnum_DeleteLocalConfig = 4120;
+  IpcCommandEnum_CreateNewLocalConfig = 4121;
+  IpcCommandEnum_ShareOnboardConfig = 4122;
+  IpcCommandEnum_ShareLocalConfig = 4123;
+  IpcCommandEnum_DownloadSharedLocalConfig = 4124;
+  IpcCommandEnum_ResetMappingConfig = 4127;
+  IpcCommandEnum_GetLocalMacroConfigList = 4128;
+  IpcCommandEnum_RenameLocalMacroConfig = 4129;
+  IpcCommandEnum_CopyLocalMacroConfig = 4130;
+  IpcCommandEnum_DeleteLocalMacroConfig = 4131;
+  IpcCommandEnum_CreateLocalMacroConfig = 4132;
+  IpcCommandEnum_ShareMacroConfig = 4133;
+  IpcCommandEnum_SaveSharedMacroConfig = 4134;
+  IpcCommandEnum_ApplyMacroConfig = 4135;
+  IpcCommandEnum_SaveMacroConfig = 4136;
+  IpcCommandEnum_UpdateLocalMacroConfigSort = 4137;
+  IpcCommandEnum_GetLocalMacroConfigDetail = 4138;
+  IpcCommandEnum_GetScreenStatus = 4144;
+  IpcCommandEnum_EnableScreenStatusBarAlwaysOn = 4145;
+  IpcCommandEnum_OffScreen = 4146;
+  IpcCommandEnum_UploadPic = 4147;
+  IpcCommandEnum_UploadProgressChanged = 4148;
+  IpcCommandEnum_GetAdapterTriggerGames = 4160;
+  IpcCommandEnum_EnableAdapterTriggerGame = 4161;
+  IpcCommandEnum_UninstallAdapterTriggerGame = 4162;
+  IpcCommandEnum_StartAdapterTriggerGame = 4163;
+  IpcCommandEnum_UpdateAdapterTriggerGame = 4164;
+  IpcCommandEnum_AdapterTriggerGameStatusChanged = 4165;
+  IpcCommandEnum_UpdateAdapterTriggerGameMod = 4166;
+  IpcCommandEnum_ApplySwitchConfig = 4167;
+  IpcCommandEnum_SetAdapterTriggerGameFavorite = 4168;
+  IpcCommandEnum_CallVibration = 4176;
+  IpcCommandEnum_CallGripVibration = 4177;
+  IpcCommandEnum_CallTriggerVibration = 4178;
+  IpcCommandEnum_UpdateReportRate = 4179;
+  IpcCommandEnum_UpdateSleepTime = 4180;
+  IpcCommandEnum_UpdateJoystickSensitivity = 4181;
+  IpcCommandEnum_UpdateJoystickPrecision = 4182;
+  IpcCommandEnum_EnableJoyStickDebounce = 4183;
+  IpcCommandEnum_EnableJoystickAutoCalibration = 4184;
+  IpcCommandEnum_EnableJoystickRebound = 4185;
+  IpcCommandEnum_EnableQuickSwitchConfig = 4186;
+  IpcCommandEnum_EnableMotionDebounce = 4187;
+  IpcCommandEnum_ReadHardwareFunction = 4188;
+  IpcCommandEnum_UpdateNickname = 4189;
+  IpcCommandEnum_EnableMappingSwitch = 4190;
+  IpcCommandEnum_EnableDockSmartStop = 4191;
+  IpcCommandEnum_UpdateFrame = 24577;
+  IpcCommandEnum_EnableCloseWithSystem = 24578;
+  IpcCommandEnum_EnableSleepWhenCharging = 24579;
+  IpcCommandEnum_EnableShowAnimationWhenCharging = 24580;
+  IpcCommandEnum_EnableLedSync = 24581;
+  IpcCommandEnum_EnableAudio = 24582;
+  IpcCommandEnum_SetFanMode = 28673;
+  IpcCommandEnum_SetFanSpeed = 28674;
+  IpcCommandEnum_EnableSmartMode = 28675;
+  IpcCommandEnum_SetRgbLight = 28676;
+  IpcCommandEnum_SetRgbConfig = 28677;
+  IpcCommandEnum_SetRgbColor = 28678;
+  IpcCommandEnum_SetRunMode = 28679;
+  IpcCommandEnum_SetAutoStart = 28680;
+  IpcCommandEnum_PowerControl = 28681;
+  IpcCommandEnum_SetIntelligentStartStop = 28682;
+  IpcCommandEnum_GetOnboardConfigs = 28683;
+  IpcCommandEnum_GetLocalConfigs = 28684;
+  IpcCommandEnum_GetConfigDetail = 28685;
+  IpcCommandEnum_GetLocalConfigDetail = 28686;
+  IpcCommandEnum_ReadMappingConfigDataVersion = 28687;
+  IpcCommandEnum_SetDeviceGear = 28688;
+  IpcCommandEnum_SetRgbSmartMode = 28689;
+  IpcCommandEnum_SetSpeedCurve = 28690;
+  IpcCommandEnum_EnableCoolerStatusReport = 28691;
+  IpcCommandEnum_CoolerDataReport = 28692;
+  IpcCommandEnum_SetFanCoolingMode = 28693;
+  IpcCommandEnum_ResetDefaultConfig = 28694;
+  IpcCommandEnum_SetFanAccLevel = 28695;
+  IpcCommandEnum_EnableLog = 57345;
+  IpcCommandEnum_AdcCalibration = 65520;
+  IpcCommandEnum_TestIndicator = 65521;
+  IpcCommandEnum_TestScreen = 65522;
+  IpcCommandEnum_TestRF = 65523;
+  IpcCommandEnum_TestDongleLosses = 65524;
+  IpcCommandEnum_TestRgb = 65525;
+  IpcCommandEnum_TestJoystick = 65526;
+  IpcCommandEnum_TestTrigger = 65527;
+  IpcCommandEnum_SwitchToXInputMode = 65528;
+  IpcCommandEnum_WriteDeviceType = 65529;
+  IpcCommandEnum_UseMockData = 65535;
+  IpcCommandEnum_DeviceNotSupported = 65536;
+}
+
+enum LedFrequency {
+  LedFrequency_AlwaysOn = 0;
+  LedFrequency_Half_1Hz = 1;
+  LedFrequency_1Hz = 2;
+  LedFrequency_2Hz = 3;
+  LedFrequency_4Hz = 4;
+  LedFrequency_Half_1Hz_On = 5;
+  LedFrequency_Off = 6;
+}
+
+enum ReportRate {
+  ReportRate_None = 0;
+  ReportRate_1000 = 1;
+  ReportRate_500 = 2;
+  ReportRate_250 = 4;
+  ReportRate_125 = 8;
+}
+
+message IpcCommand {
+  IpcCommandEnum cmdId = 1;
+  optional Category category = 2;
+  GetConnectedDevicesParams getConnectedDeviceParam = 3;
+  GetDeviceDetailInfoParams getDeviceDetailInfoParam = 4;
+  GetConfigParams getConfigParam = 5;
+  UpdateConfigParams updateConfigParam = 6;
+  SaveConfigParams saveConfigParam = 7;
+  ApplyOnboardConfigParams applyOnboardConfigParam = 8;
+  ApplyLocalConfigParams applyLocalConfigParam = 9;
+  SaveOnboardConfigToLocalParams saveOnboardConfigToLocalParam = 10;
+  UpdateLocalConfigSortParams updateLocalConfigSortParam = 11;
+  UpdateLocalConfigNameParams updateLocalConfigNameParam = 12;
+  EnableRawDataParams enableRawDataParam = 13;
+  DeleteLocalConfigParams deleteLocalConfigParam = 14;
+  CreateNewLocalConfigParams createNewLocalConfigParam = 15;
+  CallGripVibrationParams callGripVibrationParam = 16;
+  CallTriggerVibrationParams callTriggerVibrationParam = 17;
+  UpdateReportRateParams updateReportRateParam = 18;
+  UpdateSleepTimeParams updateSleepTimeParam = 19;
+  UpdateJoystickSensitivityParams updateJoystickSensitivityParam = 20;
+  UpdateJoystickPrecisionParams updateJoystickPrecisionParam = 21;
+  ReadHardwareFunctionParams readHardwareFunctionParam = 28;
+  AdcCalibrationParams adcCalibrationParam = 29;
+  TestRgbParams testRgbParam = 30;
+  TestScreenParams testScreenParam = 31;
+  TestRfParams testRfParam = 32;
+  TestDongleLossesParams testDongleLossesParam = 33;
+  TestIndicatorParams testIndicatorParam = 34;
+  TestJoystickParams testJoystickParam = 35;
+  TestTriggerParams testTriggerParam = 36;
+  ShareOnboardConfigParams shareOnboardConfigParam = 37;
+  ShareLocalConfigParams shareLocalConfigParam = 38;
+  DownloadSharedLocalConfigParams downloadSharedLocalConfigParam = 39;
+  GetLocalMacroConfigListParams getLocalMacroConfigListParams = 40;
+  RenameLocalMacroConfigParams renameLocalMacroConfigParams = 41;
+  CopyLocalMacroConfigParams copyLocalMacroConfigParams = 42;
+  DeleteLocalMacroConfigParams deleteLocalMacroConfigParams = 43;
+  CreateLocalMacroConfigParams createLocalMacroConfigParams = 44;
+  ShareMacroConfigParams shareMacroConfigParams = 45;
+  SaveSharedMacroConfigParams saveSharedMacroConfigParams = 46;
+  RecordMacroActionParams recordMacroActionParams = 47;
+  SaveMacroConfigParams saveMacroConfigParams = 48;
+  UpdateLocalMacroConfigSortParams updateLocalMacroConfigSortParams = 49;
+  GetLocalMacroConfigDetailParams getLocalMacroConfigDetailParam = 50;
+  ApplyMacroConfigParams applyMacroConfigParam = 51;
+  EnableLogParams enableLogParam = 52;
+  ResetMappingConfigParams resetMappingConfigParam = 53;
+  UploadLogParams uploadLogParam = 54;
+  InitParams initParam = 55;
+  CallVibrationParams callVibrationParams = 56;
+  EnableParams rollingRateReportParams = 57;
+  SwitchUsbParams switchUsbParams = 58;
+  GetAdapterTriggerGamesParams getAdapterTriggerGamesParams = 59;
+  EnableAdapterTriggerGameParams enableAdapterTriggerGameParams = 60;
+  UninstallAdapterTriggerGameParams uninstallAdapterTriggerGameParams = 61;
+  StartAdapterTriggerGameParams startAdapterTriggerGameParams = 62;
+  UpdateAdapterTriggerGameParams updateAdapterTriggerGameParams = 63;
+  EnableParams enableParam = 64;
+  UpdateFrameParams updateFrameParam = 65;
+  UidParams uidParam = 66;
+  UploadPicParams UploadPicParam = 67;
+  SwitchToXInputModeParams switchToXInputModeParam = 68;
+  UpdateAdapterTriggerGameModParams updateAdapterTriggerGameModParams = 69;
+  WriteDeviceTypeParams writeDeviceTypeParam = 70;
+  AcquireControllerParams acquireControllerParam = 71;
+  SingleUidParam singleUidParam = 72;
+  SetFanModeParams setFanModeParams = 73;
+  SetFanSpeedParams setFanSpeedParams = 74;
+  SetRgbConfigParams setRgbConfigParams = 75;
+  SetRgbColorParams setRgbColorParams = 76;
+  SetRunModeParams setRunModeParams = 77;
+  GetConfigDetailParams getConfigDetailParams = 78;
+  GetLocalConfigDetailParams getLocalConfigDetailParams = 79;
+  SetDeviceGearParams setDeviceGearParams = 80;
+  SetRgbSmartModeParams setRgbSmartModeParams = 81;
+  SetSpeedCurveParams setSpeedCurveParams = 82;
+  SetFanCoolingModeParams setFanCoolingModeParams = 83;
+  SmartStartStopModeParams smartStartStopModeParams = 84;
+  SetFanAccLevelParams setFanAccLevelParams = 85;
+  SetAdapterTriggerGameFavoriteParams setAdapterTriggerGameFavoriteParams = 86;
+}
+
+message SingleUidParam {
+  string uid = 1;
+}
+
+message WriteDeviceTypeParams {
+  string uid = 1;
+  int32 deviceType = 2;
+}
+
+message AcquireControllerParams {
+  string uid = 1;
+  bool acquire = 2;
+  string tagName = 3;
+}
+
+message SwitchToXInputModeParams {
+  string uid = 1;
+}
+
+message EnableParams {
+  string uid = 1;
+  bool enable = 2;
+  IntelligentStartStopModeProto StartStopMode = 3;
+}
+
+message IpcResult {
+  IpcCommandEnum cmdId = 1;
+  bool state = 2;
+  int32 code = 3;
+  Category category = 4;
+  GetConnectedDevicesResult getConnectedDevices = 5;
+  DeviceConnectionChangedResult deviceConnectionChanged = 6;
+  GetDeviceDetailInfoResult getDeviceDetailInfo = 7;
+  ConfigsResult configs = 8;
+  GetConfigResult getConfigResult = 9;
+  ReadHardwareFunctionResult readHardwareFunctionResult = 10;
+  LocalMacroConfigsResult localMacroConfigs = 11;
+  ShareLocalMacroConfigResult shareLocalMacroConfigResult = 12;
+  SaveSharedLocalMacroConfigResult saveSharedLocalMacroConfigResult = 13;
+  LocalMacroConfigDetailResult localMacroConfigDetailResult = 14;
+  RollingRateReportResult rollingRateReportResult = 15;
+  AdapterTriggerGamesResult adapterTriggerGamesResult = 16;
+  AdapterTriggerGameStatusResult adapterTriggerGameStatusResult = 17;
+  OperatorStatus operatorRecord = 50;
+  ShareConfigResult shareConfigResult = 51;
+  DownloadSharedLocalConfigResult downloadSharedLocalConfigResult = 52;
+  CurrentAppliedConfigIdResult currentAppliedConfigIdResult = 53;
+  InitResult initResult = 54;
+  ScreenConfigResult screenConfigResult = 55;
+  ProgressChangedResult ProgressChangedResult = 56;
+  CheckThirdPartyAcquiredControllerResult checkThirdPartyAcquiredControllerResult = 57;
+  MappingTestConfigResult mappingTestConfigResult = 58;
+  TestDongleLossesResult testDongleLossesResult = 244;
+  TestJoystickResult testJoystickResult = 246;
+  TestTriggerResult testTriggerResult = 247;
+  HidDevice deviceNotSupportedResult = 65536;
+}
+
+message MappingTestConfigResult {
+  string uid = 1;
+  JoystickMapType leftJoystickMapType = 2;
+  JoystickMapType rightJoystickMapType = 3;
+  MotionMapType motionMapType = 4;
+}
+
+message CheckThirdPartyAcquiredControllerResult {
+  string uid = 1;
+  optional string thirdPartyTag = 2;
+}
+
+message ProgressChangedResult {
+  double progress = 1;
+}
+
+message ScreenConfigResult {
+  string uid = 1;
+  int32 cfgId = 2;
+  bool showStatusBar = 3;
+  bool offScreen = 4;
+}
+
+message UpdateFrameParams {
+  string uid = 1;
+  int32 cfgId = 2;
+  FramedLedColor frame = 3;
+}
+
+message AdapterTriggerGameStatusResult {
+  string game = 1;
+  bool enabled = 2;
+}
+
+message EnableAdapterTriggerGameParams {
+  int32 id = 1;
+  bool enable = 2;
+  int32 mapType = 3;
+}
+
+message SetAdapterTriggerGameFavoriteParams {
+  int32 id = 1;
+  bool favorite = 2;
+}
+
+message UpdateAdapterTriggerGameModParams {
+  int32 id = 1;
+}
+
+message UninstallAdapterTriggerGameParams {
+  int32 id = 1;
+}
+
+message UploadPicParams {
+  string uid = 1;
+  int32 frameInterval = 2;
+  repeated int32 imageData = 3;
+}
+
+message UpdateAdapterTriggerGameParams {
+  int32 id = 1;
+  optional string gamePath = 2;
+  optional int32 mapType = 3;
+}
+
+message StartAdapterTriggerGameParams {
+  int32 id = 1;
+}
+
+message GetAdapterTriggerGamesParams {
+  string games = 1;
+}
+
+message AdapterTriggerGamesResult {
+  repeated AdapterTriggerGame adapterTriggerGames = 1;
+  AdapterTriggerGame selectedGame = 2;
+}
+
+message InitResult {
+  string dataPath = 1;
+  bool LogEnabled = 2;
+  bool DebugLogEnabled = 3;
+}
+
+message SwitchUsbParams {
+  string uid = 1;
+  ChipModule chipModule = 2;
+  ChipType chipType = 3;
+}
+
+message RollingRateReportResult {
+  string uid = 1;
+  int32 rollingRate = 2;
+}
+
+message InitParams {
+  string appVersion = 1;
+  string language = 2;
+}
+
+message UploadLogParams {
+  string action = 1;
+  string uid = 2;
+}
+
+message CurrentAppliedConfigIdResult {
+  string uid = 1;
+  int32 cfgId = 2;
+}
+
+message EnableLogParams {
+  bool enable = 1;
+}
+
+message ResetMappingConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 cfgId = 3;
+}
+
+message ApplyMacroConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 cfgId = 3;
+  ControllerKey keyId = 4;
+  MacroItem config = 5;
+}
+
+message GetLocalMacroConfigDetailParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string fileName = 3;
+}
+
+message GetLocalMacroConfigListParams {
+  string deviceCode = 1;
+  string uid = 2;
+}
+
+message RenameLocalMacroConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string fileName = 3;
+  string newTitle = 4;
+}
+
+message CopyLocalMacroConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string fileName = 3;
+}
+
+message DeleteLocalMacroConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string fileName = 3;
+}
+
+message CreateLocalMacroConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string title = 3;
+}
+
+message ShareMacroConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string fileName = 3;
+}
+
+message SaveSharedMacroConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string title = 3;
+  string data = 4;
+}
+
+message RecordMacroActionParams {
+  string deviceCode = 1;
+  string uid = 2;
+  bool start = 3;
+  ControllerKey keyId = 4;
+}
+
+message SaveMacroConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 cfgId = 3;
+  optional string filename = 4;
+  string title = 5;
+  MacroItem data = 6;
+}
+
+message UpdateLocalMacroConfigSortParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string fileName = 3;
+  int32 newSort = 4;
+}
+
+message DownloadSharedLocalConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string data = 3;
+  string title = 4;
+}
+
+message ShareOnboardConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 cfgId = 3;
+}
+
+message ShareLocalConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string fileName = 3;
+}
+
+message AdcCalibrationParams {
+  string uid = 1;
+  bool start = 2;
+}
+
+message TestRgbParams {
+  string uid = 1;
+  int32 color = 2;
+}
+
+message TestScreenParams {
+  string uid = 1;
+  int32 color = 2;
+}
+
+message TestRfParams {
+  string uid = 1;
+  bool start = 2;
+}
+
+message TestDongleLossesParams {
+  string uid = 1;
+  bool start = 2;
+}
+
+message TestIndicatorParams {
+  string uid = 1;
+  int32 ledId = 2;
+  LedFrequency ledFrequency = 3;
+  int32 time = 4;
+  int32 color = 5;
+}
+
+message TestJoystickParams {
+  string uid = 1;
+  bool start = 2;
+}
+
+message TestTriggerParams {
+  string uid = 1;
+  bool start = 2;
+}
+
+message LocalMacroConfigDetailResult {
+  MacroItem macroItem = 1;
+}
+
+message LocalMacroConfigsResult {
+  Category category = 1;
+  string deviceCode = 2;
+  repeated DeviceConfig deviceConfig = 3;
+}
+
+message ShareLocalMacroConfigResult {
+  string title = 1;
+  string data = 2;
+}
+
+message SaveSharedLocalMacroConfigResult {
+  LocalMacroConfigsResult configs = 1;
+}
+
+message ShareConfigResult {
+  string data = 1;
+}
+
+message DownloadSharedLocalConfigResult {
+  ConfigsResult configs = 1;
+}
+
+message UpdateReportRateParams {
+  string uid = 1;
+  ReportRate rate = 2;
+}
+
+message UpdateSleepTimeParams {
+  string uid = 1;
+  int32 time = 2;
+}
+
+message UpdateJoystickSensitivityParams {
+  string uid = 1;
+  JoystickSensitivity sensitivity = 2;
+}
+
+message UpdateJoystickPrecisionParams {
+  string uid = 1;
+  JoystickPrecision precision = 2;
+}
+
+message ReadHardwareFunctionParams {
+  string uid = 1;
+}
+
+message ReadHardwareFunctionResult {
+  bool joystickReboundUsable = 1;
+  bool joystickAutoCalibrationUsable = 2;
+  bool joystickDebounceUsable = 3;
+  bool mappingSwitchUsable = 4;
+  bool motionDebounceUsable = 5;
+  bool xboxHomeButtonUsable = 6;
+  bool quickSwitchConfigUsable = 7;
+  bool joystickReboundEnabled = 8;
+  bool joystickAutoCalibrationEnabled = 9;
+  bool joystickDebounceEnabled = 10;
+  bool mappingSwitchEnabled = 11;
+  bool motionDebounceEnabled = 12;
+  bool xboxHomeButtonEnabled = 13;
+  bool quickSwitchConfigEnabled = 14;
+  int32 sleepTime = 15;
+  ReportRate reportRate = 16;
+  JoystickPrecision joystickPrecision = 17;
+  JoystickSensitivity joystickSensitivity = 18;
+  bool statusBarAlwaysOn = 19;
+  bool offScreen = 20;
+  bool audioUsable = 21;
+  bool audioEnabled = 22;
+  bool dockSmartStopUsable = 23;
+  bool dockSmartStopEnable = 24;
+  bool resetAllMappingUsable = 25;
+  bool controlByThirdPartyAppUsable = 26;
+  bool controlByThirdPartyAppEnabled = 27;
+  optional string controlByThirdPartyAppTag = 28;
+}
+
+message EnableRawDataParams {
+  string uid = 1;
+  bool enable = 2;
+  optional ReceiveRawDataScene scene = 3;
+}
+
+message UpdateLocalConfigSortParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string fileName = 3;
+  int32 newSort = 4;
+}
+
+message UpdateLocalConfigNameParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string fileName = 3;
+  string newTitle = 4;
+}
+
+message DeleteLocalConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string fileName = 3;
+}
+
+message CreateNewLocalConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  string title = 3;
+  string defaultFilePath = 4;
+}
+
+message CallVibrationParams {
+  string deviceCode = 1;
+  string uid = 2;
+  VibrationType vibrationType = 3;
+  int32 leftGripValue = 4;
+  int32 rightGripValue = 5;
+  int32 leftTriggerValue = 6;
+  int32 rightTriggerValue = 7;
+}
+
+message CallGripVibrationParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 leftValue = 3;
+  int32 rightValue = 4;
+}
+
+message CallTriggerVibrationParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 leftValue = 3;
+  int32 rightValue = 4;
+}
+
+message GetConnectedDevicesParams {
+}
+
+message UidParams {
+  string deviceCode = 1;
+  string uid = 2;
+}
+
+message GetDeviceDetailInfoParams {
+  string deviceCode = 1;
+  string uid = 2;
+}
+
+message GetConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 cfgId = 3;
+  repeated ConfigType configType = 4;
+  optional ControllerKey keyId = 5;
+}
+
+message UpdateConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 cfgId = 3;
+  optional LedConfig ledConfig = 4;
+  optional VibrationItemConfigBean vibrationConfig = 5;
+  optional KeyConfigBean keyConfig = 6;
+  optional JoystickConfigBeans joystickConfig = 7;
+  optional MotionConfigBean motionConfig = 8;
+  optional TriggerConfigs triggerConfig = 9;
+  optional string title = 11;
+  optional ChargerLedConfig chargerLedConfig = 12;
+  optional bool sleepWhenCharging = 13;
+  optional bool showAnimationWhenCharging = 14;
+  optional bool ledSync = 15;
+  optional bool closeWithSystem = 16;
+  optional ChargerLedTypeAdvanced chargerLedTypeAdvanced = 17;
+}
+
+message SaveConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 cfgId = 3;
+}
+
+message SaveOnboardConfigToLocalParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 cfgId = 3;
+  string title = 4;
+}
+
+message ApplyOnboardConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 cfgId = 3;
+}
+
+message ApplyOnboardConfigResult {
+  string uid = 1;
+  ConfigsResult configs = 2;
+}
+
+message ApplyLocalConfigParams {
+  string deviceCode = 1;
+  string uid = 2;
+  int32 onboardCfgId = 3;
+  string localCfgFilename = 4;
+}
+
+message ConfigsResult {
+  Category category = 1;
+  string uid = 2;
+  repeated DeviceConfig onboardConfigs = 3;
+  LocalConfigs localConfigs = 4;
+}
+
+message GetDeviceDetailInfoResult {
+  ControllerInfo controllerInfo = 1;
+  KeyboardInfo keyboardInfo = 2;
+  MouseInfo mouseInfo = 3;
+  CoolerInfo coolerInfo = 4;
+  HeadsetInfo headsetInfo = 5;
+  ChargerInfo chargerInfo = 7;
+  ConfigsResult configs = 6;
+  bool onlyRefresh = 8;
+  optional string thirdPartyAppControlledTag = 9;
+  bool thirdPartyAppControlUsable = 10;
+}
+
+message GetConnectedDevicesResult {
+  repeated DeviceInfo connectedDevices = 1;
+}
+
+message DeviceConnectionChangedResult {
+  DeviceInfo deviceInfo = 1;
+}
+
+message GetConfigResult {
+  string uid = 1;
+  int32 cfgId = 2;
+  optional LedConfigs ledConfigs = 3;
+  optional VibrationItemConfigBean vibrationConfig = 4;
+  optional KeyConfigBean keyConfig = 5;
+  optional JoystickConfigBeans joystickConfig = 6;
+  optional MotionConfigBean motionConfig = 7;
+  optional TriggerConfigs triggerConfig = 8;
+  optional MacroConfig macroConfig = 9;
+  repeated SimpleKeyConfig simpleKeyConfig = 10;
+  optional string allConfig = 11;
+  optional ChargerMappingConfigBean chargerConfig = 12;
+  int32 protocolVersion = 13;
+  optional KeyboardMappingConfigBean keyboardConfig = 14;
+  optional CoolerMappingConfigBean coolerConfig = 15;
+}
+
+message OperatorStatus {
+  string uid = 1;
+  JoystickStatus leftJoystick = 2;
+  JoystickStatus rightJoystick = 3;
+  repeated KeyStatus keyStatus = 4;
+  int32 linearLt = 5;
+  int32 linearRt = 6;
+  MotionStatus motion = 7;
+}
+
+message MotionStatus {
+  int32 gyroX = 1;
+  int32 gyroY = 2;
+  int32 gyroZ = 3;
+  int32 accX = 4;
+  int32 accY = 5;
+  int32 accZ = 6;
+}
+
+message JoystickStatus {
+  int32 x = 1;
+  int32 y = 2;
+  Direction direction = 3;
+  int32 centerValue = 4;
+}
+
+message KeyStatus {
+  ControllerKey keyId = 1;
+  bool isPressed = 2;
+}
+
+message TestJoystickResult {
+  bool enabled = 1;
+}
+
+message TestTriggerResult {
+  bool enabled = 1;
+}
+
+message TestDongleLossesResult {
+  int32 lossCount = 1;
+  int32 lossCountFreq1 = 2;
+  int32 lossCountFreq2 = 3;
+  int32 lossCountFreq3 = 4;
+  int32 lossCountFreq4 = 5;
+  int32 lossCountFreq5 = 6;
+  int32 lossCountFreq6 = 7;
+  int32 lossCountFreq7 = 8;
+  int32 lossCountFreq8 = 9;
+  int32 lossCountFreq9 = 10;
+  int32 lossCountFreq10 = 11;
+}
+
+message AdapterTriggerGames {
+  repeated AdapterTriggerGame games = 1;
+}
+
+message AdapterTriggerGame {
+  int32 id = 1;
+  repeated string platforms = 3;
+  string game_name = 5;
+  string en_game_name = 6;
+  string game_path = 7;
+  string icon = 8;
+  string image_path = 9;
+  int32 mod_start_type = 12;
+  string version = 21;
+  string update_time_str = 22;
+  bool is_need_start_mod = 26;
+  bool is_need_down_mod = 27;
+  bool is_allow_select_dir = 28;
+  bool is_show_start_game_button = 34;
+  string min_firmware_version = 35;
+  string notice_pic_url = 38;
+  string en_notice_pic_url = 39;
+  bool is_ps5 = 40;
+  bool is_mod = 41;
+  string update = 42;
+  string scenes = 43;
+  int32 game_start_type = 44;
+  bool is_repair = 45;
+  bool is_installed = 47;
+  bool is_enabled = 48;
+  bool is_service_running = 49;
+  bool is_data_transferring = 50;
+  int64 last_play_time = 51;
+  int32 play_count = 52;
+  string installedPlatform = 53;
+  string appName = 54;
+  string exeFileName = 55;
+  int32 mapType = 56;
+  bool is_update = 57;
+  bool is_favorite = 58;
+}
+
+message SetFanModeParams {
+  string uid = 1;
+  FanModeProto mode = 2;
+  uint32 speed = 3;
+}
+
+message SetFanAccLevelParams {
+  string uid = 1;
+  FanAccLevelProto level = 2;
+}
+
+message SetFanSpeedParams {
+  string uid = 1;
+  uint32 speed = 2;
+}
+
+message SetRgbConfigParams {
+  string uid = 1;
+  RgbConfig config = 2;
+}
+
+message SetRgbColorParams {
+  string uid = 1;
+  Color color = 2;
+}
+
+message SetRunModeParams {
+  string uid = 1;
+  RunModeProto mode = 2;
+}
+
+message GetConfigDetailParams {
+  string uid = 1;
+  int32 cfgId = 2;
+}
+
+message GetLocalConfigDetailParams {
+  string uid = 1;
+  string fileName = 2;
+}
+
+message SetDeviceGearParams {
+  string uid = 1;
+  int32 gear = 2;
+  int32 speed = 3;
+}
+
+message SetRgbSmartModeParams {
+  string uid = 1;
+  SmartModeProto mode = 2;
+}
+
+message SetSpeedCurveParams {
+  string uid = 1;
+  IntelligentCoolingConfig config = 2;
+}
+
+message SetFanCoolingModeParams {
+  string uid = 1;
+  FanCoolingModeProto cooling_mode = 2;
+  IntelligentCoolingPresetProto preset_mode = 3;
+  IntelligentCoolingConfig custom_config = 4;
+}
+
+message SmartStartStopModeParams {
+  string uid = 1;
+  IntelligentStartStopModeProto mode = 2;
+}
+

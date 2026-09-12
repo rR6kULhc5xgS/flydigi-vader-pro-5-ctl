@@ -1,0 +1,110 @@
+// file: ControllerMappingConfig.proto
+package Flydigi.SharedResources.data.protobuf;
+import "ControllerEnum.proto";
+import "Enum.proto";
+import "Common.proto";
+import "KeyboardEnum.proto";
+import "ControllerMappingConfigBean.proto";
+
+message SimpleKeyConfig {
+  ControllerKey keyId = 1;
+  KeyMapType mapType = 2;
+  optional ControllerKey mapKeyId = 3;
+  optional KeyboardKey mapKeyboardKeyId = 4;
+}
+
+message LocalLedConfigs {
+  repeated LedConfigs ledConfigs = 1;
+}
+
+message LedConfigs {
+  LedConfig currentConfig = 1;
+  repeated LedConfig ledConfig = 2;
+}
+
+message LedConfig {
+  LedType mode = 1;
+  int32 period = 2;
+  int32 brightness = 3;
+  repeated Color color = 4;
+  int32 useColorCount = 5;
+  int32 proto = 6;
+  bool syncWithGripEnable = 7;
+}
+
+message MacroConfig {
+  int32 maxMacroCount = 1;
+  int32 maxActionCount = 2;
+  int32 macroCountRemain = 3;
+  int32 actionCountRemain = 4;
+  optional string title = 5;
+  optional MacroItem macroItem = 6;
+  int32 minTimeInterval = 7;
+}
+
+message TriggerConfigs {
+  TriggerConfig leftTriggerConfig = 1;
+  TriggerConfig rightTriggerConfig = 2;
+}
+
+message TriggerConfig {
+  int32 start = 1;
+  int32 end = 2;
+  AdapterTriggerConfigParam adapterTriggerConfigParam = 3;
+  VibrationTriggerConfigParam vibrationTriggerConfigParam = 4;
+}
+
+message VibrationTriggerConfigParam {
+  bool enable = 1;
+  int32 level = 2;
+  int32 block = 3;
+  int32 min = 4;
+  int32 max = 5;
+}
+
+message AdapterTriggerConfigParam {
+  AdapterTriggerType triggerType = 1;
+  AdapterTriggerTypeNormal triggerTypeNormal = 2;
+  AdapterTriggerTypeRace triggerTypeRace = 3;
+  AdapterTriggerTypeSniper triggerTypeSniper = 4;
+  AdapterTriggerTypeRecoil triggerTypeRecoil = 5;
+  AdapterTriggerTypeLock triggerTypeLock = 6;
+  AdapterTriggerTypeVibration triggerTypeVibration = 7;
+}
+
+message AdapterTriggerTypeNormal {
+  int32 start = 1;
+  int32 end = 2;
+}
+
+message AdapterTriggerTypeRace {
+  int32 start = 1;
+  int32 resistance = 2;
+}
+
+message AdapterTriggerTypeSniper {
+  int32 start = 1;
+  int32 pressLevel = 2;
+  int32 vibrationLevel = 3;
+  int32 vibrationFrequency = 4;
+  bool matchStart = 5;
+}
+
+message AdapterTriggerTypeRecoil {
+  int32 start = 1;
+  int32 end = 2;
+  int32 resistance = 3;
+  bool matchStart = 4;
+}
+
+message AdapterTriggerTypeLock {
+  int32 start = 1;
+}
+
+message AdapterTriggerTypeVibration {
+  int32 scale = 1;
+  int32 block = 2;
+  int32 stroke = 3;
+  int32 frequency = 4;
+}
+
